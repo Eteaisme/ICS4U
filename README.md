@@ -14,8 +14,11 @@ A repository to store Elliot Tam's coursework for ICS4U
 
 </div>
 
-## Ethics In Computer Science
+# Ethics In Computer Science
 - Lorem Ipsum
 
-## Python
-- Python 
+# Python
+## Unit 1
+- Game of Pig
+## Unit 2 
+- Lists
