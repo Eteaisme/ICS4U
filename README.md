@@ -5,8 +5,8 @@
 
 A repository to store Elliot Tam's coursework for ICS4U
 <img width="698" src="">
-<h4>[
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Eteaisme/ICS4U/main)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/Eteaisme/ICS4U)
 
 
 
