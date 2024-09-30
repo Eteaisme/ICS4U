@@ -1,13 +1,19 @@
-
-
-<h4 align="center">
-<img align="center" src="https://github.com/Eteaisme/ICS3U/assets/97298687/857d3800-7630-445b-a336-9eed8c41702d" width="1000" >
+<div align="center">
+    <h3>💻</h3>
+    <h1>ICS4U</h1>
     
+
 A repository to store Elliot Tam's coursework for ICS4U
-    
-![GitHub last commit](https://img.shields.io/github/last-commit/Eteaisme/ICS3U)
-<h4>
+<img width="698" src="">
+<h4>[
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Eteaisme/ICS4U/main)
 
 
 
+</div>
 
+## Ethics In Computer Science
+- Lorem Ipsum
+
+## Python
+- Python 
