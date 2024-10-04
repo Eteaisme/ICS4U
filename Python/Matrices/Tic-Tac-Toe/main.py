@@ -56,8 +56,8 @@ class HumanPlayer(Player):
             if((choice >=1)and(choice <=9)):
                 verified = "True"
             else:
-                print("Please input a valid number. [1-9]")
-                slef.printBoardOptions()
+                print("\nPlease input a valid number. [1-9]")
+                self.printBoardOptions()
         self.board[choice - 1] = self.symbol
 
 humanPlayer = HumanPlayer("X")
