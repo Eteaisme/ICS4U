@@ -8,9 +8,26 @@ class Player:
     
 
     def checkWinner(self):
-        winConditions = [(0,1,2), (3,4,5), (6,7,8), # Rows
-                            (0,3,6), (1,4,7), (2,5,8), # Columns
-                            (0,4,8), (2,4,6)] # Diagonals
+        winThreshhold = 0
+        winConditions = [[0,1,2],
+                         [3,4,5],
+                         [6,7,8],
+                         [0,3,6],
+                         [1,4,7],
+                         [2,5,8],
+                         [0,4,8],
+                         [2,4,6]]
+        for i in range(len(winConditions)):
+            print("In loop 1")
+            for j in range(len(winConditions[i])):
+                print(self.board[j])
+                print("in loop 2")
+                if(self.board[j]) == self.symbol: 
+                    winThreshhold += 1
+
+        if(winThreshhold == 3):
+            self.winner = True
+
 
     def printBoard(self):
         print("\n")
@@ -61,4 +78,4 @@ class HumanPlayer(Player):
         self.board[choice - 1] = self.symbol
 
 humanPlayer = HumanPlayer("X")
-humanPlayer.gameRound()
+humanPlayer.checkWinner()
