@@ -7,13 +7,10 @@ class Player:
         self.board = ["" for _ in range(9)]
     
 
-    def checkWinner(self, board):
+    def checkWinner(self):
         winConditions = [(0,1,2), (3,4,5), (6,7,8), # Rows
                             (0,3,6), (1,4,7), (2,5,8), # Columns
                             (0,4,8), (2,4,6)] # Diagonals
-        for condition in winConditions:
-            if board[condition[0]]== self.symbol:
-                self.winnner = True
 
     def printBoard(self):
         print("\n")
@@ -22,7 +19,7 @@ class Player:
             if i < 6:
                 print("---|---|---")
         print("\n")    
-        
+
     def printBoardOptions(self):
         for i in range(0, 9, 3):
             print(f" {i+1} | {i+2} | {i+3} ")
@@ -33,8 +30,12 @@ class Player:
     def gameRound(self):
         print("\nWelcome to Tic-Tac-Toe!")
         self.printBoardOptions() 
-        self.getInput()
-        self.printBoard()
+        while(self.winnner == False):
+            print(self.winnner)
+            self.getInput()
+            self.printBoard()
+            self.checkWinner()
+            
 
 
 
@@ -60,5 +61,4 @@ class HumanPlayer(Player):
         self.board[choice - 1] = self.symbol
 
 humanPlayer = HumanPlayer("X")
-humanPlayer.board[0] = humanPlayer.symbol
-humanPlayer.printBoard()
+humanPlayer.gameRound()
