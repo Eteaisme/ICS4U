@@ -4,7 +4,7 @@ class Player:
     def __init__(self, symbol):
         self.symbol = symbol
         self.winnner = False
-        self.board = [' ' for _ in range(9)]
+        self.board = ["" for _ in range(9)]
     
 
     def checkWinner(self, board):
@@ -22,11 +22,43 @@ class Player:
             if i < 6:
                 print("---|---|---")
         print("\n")    
+        
+    def printBoardOptions(self):
+        for i in range(0, 9, 3):
+            print(f" {i+1} | {i+2} | {i+3} ")
+            if i < 6:
+                print("---|---|---")
+        print("\n")    
 
-humanPlayer = Player("X")
+    def gameRound(self):
+        print("\nWelcome to Tic-Tac-Toe!")
+        self.printBoardOptions() 
+        self.getInput()
+        self.printBoard()
+
+
+
+
+
+
+class HumanPlayer(Player):
+    def __init__(self, symbol):
+        self.symbol = symbol
+        self.winnner = False
+        self.board = [' ' for _ in range(9)]
+    
+    def getInput(self):
+        verified = False
+        
+        while(verified == False):
+            choice = int(input("Enter your choice [1-9]: "))
+            if((choice >=1)and(choice <=9)):
+                verified = "True"
+            else:
+                print("Please input a valid number. [1-9]")
+                slef.printBoardOptions()
+        self.board[choice - 1] = self.symbol
+
+humanPlayer = HumanPlayer("X")
 humanPlayer.board[0] = humanPlayer.symbol
-humanPlayer.board[1] = humanPlayer.symbol
-humanPlayer.board[2] = humanPlayer.symbol
 humanPlayer.printBoard()
-humanPlayer.checkWinner(humanPlayer.board)
-print(humanPlayer.winnner)
