@@ -1,76 +1,83 @@
-#Last Updated: 03/10/2024
-#Working on checkWinner() method
+# Last Updated: 03/10/2024
+# Players now share a common board
 
-class Player:
-    def __init__(self, symbol):
-        self.symbol = symbol
-        self.winnner = False
-        self.board = ["" for _ in range(9)]
+class TicTacToeGame:
+    def __init__(self):
+        self.board = [' ' for _ in range(9)]  
     
-
-    def checkWinner(self):
-        winConditions = [[0,1,2],
-                         [3,4,5],
-                         [6,7,8],
-                         [0,3,6],
-                         [1,4,7],
-                         [2,5,8],
-                         [0,4,8],
-                         [2,4,6]]
-        for i in range(len(winConditions)):
-            if((self.board[winConditions[i][0]] == self.symbol) and 
-            (self.board[winConditions[i][1]] == self.symbol) and
-            (self.board[winConditions[i][2]] == self.symbol)):
-                self.winnner = True
-
-
     def printBoard(self):
         print("\n")
         for i in range(0, 9, 3):
             print(f" {self.board[i]} | {self.board[i+1]} | {self.board[i+2]} ")
             if i < 6:
                 print("---|---|---")
-        print("\n")    
+        print("\n")
 
     def printBoardOptions(self):
         for i in range(0, 9, 3):
             print(f" {i+1} | {i+2} | {i+3} ")
             if i < 6:
                 print("---|---|---")
-        print("\n")    
+        print("\n")
 
-    def gameRound(self):
+    def checkWinner(self, symbol):
+        winConditions = [[0, 1, 2], [3, 4, 5], [6, 7, 8],  # Rows
+                         [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Columns
+                         [0, 4, 8], [2, 4, 6]]  # Diagonals
+        for condition in winConditions:
+            if (self.board[condition[0]] == symbol and
+                self.board[condition[1]] == symbol and
+                self.board[condition[2]] == symbol):
+                return True
+        return False
+
+    def isBoardFull(self):
+        return ' ' not in self.board
+
+    def gameRound(self, player1, player2):
+        current_player = player1
         print("\nWelcome to Tic-Tac-Toe!")
-        self.printBoardOptions() 
-        while(self.winnner == False):
-            print(self.winnner)
-            self.getInput()
+        self.printBoardOptions()
+        
+        while True:
+            print(f"\n{current_player.symbol}'s turn:")
+            current_player.getInput(self.board)  
             self.printBoard()
-            self.checkWinner()
-            
+
+            if self.checkWinner(current_player.symbol):
+                print(f"Player {current_player.symbol} wins!")
+                break
+
+            if self.isBoardFull():
+                print("It's a tie!")
+                break
+
+            current_player = player2 if current_player == player1 else player1
 
 
 
 
-
-
-class HumanPlayer(Player):
+class HumanPlayer():
     def __init__(self, symbol):
         self.symbol = symbol
-        self.winnner = False
-        self.board = [' ' for _ in range(9)]
-    
-    def getInput(self):
-        verified = False
-        
-        while(verified == False):
-            choice = int(input("Enter your choice [1-9]: "))
-            if((choice >=1)and(choice <=9)):
-                verified = "True"
-            else:
-                print("\nPlease input a valid number. [1-9]")
-                self.printBoardOptions()
-        self.board[choice - 1] = self.symbol
 
-humanPlayer = HumanPlayer("X")
-humanPlayer.gameRound()
+    def getInput(self, board):
+        while True:
+            try:
+                choice = int(input(f"Player {self.symbol}, enter your move (1-9): ")) - 1
+                if 0 <= choice <= 8 and board[choice] == ' ':
+                    board[choice] = self.symbol
+                    break
+                else:
+                    print("Invalid move, the spot is already taken or out of range. Try again.")
+            except ValueError:
+                print("Please enter a valid number between 1 and 9.")
+
+
+######## MAIN CODE #########
+humanPlayer1 = HumanPlayer("X")
+humanPlayer2 = HumanPlayer("O")
+
+game = TicTacToeGame()
+
+game.gameRound(humanPlayer1, humanPlayer2)
