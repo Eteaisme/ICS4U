@@ -73,13 +73,10 @@ class RandomComputerPlayer():
         self.symbol = symbol 
     def getInput(self, board):
         while True: 
-            try:
-                choice = random.randint(1, 9)
-                if board[choice] == ' ':
-                    board[choice] = self.symbol
-                    break  
-            except ValueError:
-                print()
+            choice = random.randint(0, 8)
+            if 0 <= choice <= 8 and board[choice] == ' ':
+                board[choice] = self.symbol
+                break  
 
 
 class HumanPlayer():
