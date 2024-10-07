@@ -1,4 +1,6 @@
-# Last Updated: E. Tam 04/10/2024
+# Last Updated: E. Tam 07/10/2024
+import random
+
 
 ################# MAIN GAME CLASS DEFINITION #############################
 class TicTacToeGame:
@@ -65,7 +67,21 @@ class TicTacToeGame:
             current_player = player2 if current_player == player1 else player1
 
 
-################### PLAYER CLASS DEFINITIONS #############################
+################### CHILD CLASS DEFINITIONS #############################
+class RandomComputerPlayer():
+    def __init__(self, symbol):
+        self.symbol = symbol 
+    def getInput(self, board):
+        while True: 
+            try:
+                choice = random.randint(1, 9)
+                if board[choice] == ' ':
+                    board[choice] = self.symbol
+                    break  
+            except ValueError:
+                print()
+
+
 class HumanPlayer():
     def __init__(self, symbol):
         #When a HumanPlayer object is created pass in a symbol value
@@ -82,14 +98,18 @@ class HumanPlayer():
                 else:
                     print("Invalid move, the spot is already taken or out of range. Try again.")
             except ValueError:
-                print("Please enter a valid number between 1 and 9.")
+                print("Please enter a valid intiger between 1 and 9.")
 
 
 ######## MAIN CODE #########
 # Create two human players with symbols 'X' and 'O'
 humanPlayer1 = HumanPlayer("X")
 humanPlayer2 = HumanPlayer("O")
+
+randomComputerPlayer1 = RandomComputerPlayer("X")
+randomComputerPlayer2 = RandomComputerPlayer("O")
+
 game = TicTacToeGame()
 
-# Start the game round between two human players
-game.gameRound(humanPlayer1, humanPlayer2)
+# Start the game round between two players
+game.gameRound(randomComputerPlayer1, randomComputerPlayer2)
