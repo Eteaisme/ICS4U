@@ -1,7 +1,6 @@
 # Last Updated: E. Tam 07/10/2024
 import random
 
-
 ################# MAIN GAME CLASS DEFINITION #############################
 class TicTacToeGame:
     def __init__(self):
@@ -31,7 +30,7 @@ class TicTacToeGame:
         winConditions = [[0, 1, 2], [3, 4, 5], [6, 7, 8],  # Rows
                          [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Columns
                          [0, 4, 8], [2, 4, 6]]  # Diagonals
-        #Check if a board has met any of the win conditions
+        # Check if a board has met any of the win conditions
         for condition in winConditions:
             if (self.board[condition[0]] == symbol and
                 self.board[condition[1]] == symbol and
@@ -44,19 +43,19 @@ class TicTacToeGame:
         return ' ' not in self.board
 
     def gameRound(self, player1, player2):
-        current_player = player1  
-        #Print starting information
+        currentPlayer = player1  
+        # Print starting information
         print("\nWelcome to Tic-Tac-Toe!")
         self.printBoardOptions()  
 
-        #Loop until either the board is full or one of the players has met a win condition
+        # Loop until either the board is full or one of the players has met a win condition
         while True:
-            print(f"\n{current_player.symbol}'s turn:")  
-            current_player.getInput(self.board)  
+            print(f"\n{currentPlayer.symbol}'s turn:")  
+            currentPlayer.getInput(self.board)  
             self.printBoard()  
 
-            if self.checkWinner(current_player.symbol):
-                print(f"Player {current_player.symbol} wins!")  
+            if self.checkWinner(currentPlayer.symbol):
+                print(f"Player {currentPlayer.symbol} wins!")  
                 break 
 
             if self.isBoardFull():
@@ -64,7 +63,7 @@ class TicTacToeGame:
                 break   
 
             # Switch turns
-            current_player = player2 if current_player == player1 else player1
+            currentPlayer = player2 if currentPlayer == player1 else player1
 
 
 ################### CHILD CLASS DEFINITIONS #############################
@@ -79,14 +78,15 @@ class RandomComputerPlayer():
                 break  
 
 
+################### HUMAN PLAYER #############################
 class HumanPlayer():
     def __init__(self, symbol):
-        #When a HumanPlayer object is created pass in a symbol value
+        # When a HumanPlayer object is created pass in a symbol value
         self.symbol = symbol
 
     def getInput(self, board):
         while True:
-            #Get input from object and check if the input is valid
+            # Get input from the player and check if the input is valid
             try:
                 choice = int(input(f"Player {self.symbol}, enter your move (1-9): ")) - 1
                 if 0 <= choice <= 8 and board[choice] == ' ':
@@ -95,18 +95,85 @@ class HumanPlayer():
                 else:
                     print("Invalid move, the spot is already taken or out of range. Try again.")
             except ValueError:
-                print("Please enter a valid intiger between 1 and 9.")
+                print("Please enter a valid integer between 1 and 9.")
+
+
+################### AI PLAYER #############################
+class AI:
+    def __init__(self,symbol):
+        self.symbol = symbol
+        self.opponentSymbol = "O" if symbol == "X" else "X"
+    def getInput(self, board):
+        bestMove = self.minimax(board, self.symbol)["position"]
+        if bestMove is not None:
+            board[bestMove] = self.symbol
+        else:
+            raise ValueError("No valid moves")
+
+    def minimax(self, board, currentPlayer):
+        #Base cases return dictonary 
+        if self.checkWinner(board, self.opponentSymbol):
+            return {"position": None, "score": -1}  
+        elif self.checkWinner(board, self.symbol):
+            return {"position": None, "score": 1}   
+        elif self.isBoardFull(board):
+            return {"position": None, "score": 0}   
+
+        if currentPlayer == self.symbol:
+            best = {"position": None, "score": -float("inf")}  # Maximize score
+        else:
+            best = {"position": None, "score": float("inf")}   # Minimize score
+
+        for i in range(9):
+            if board[i] == " ":
+                # Make the move
+                board[i] = currentPlayer 
+                # Call minimax recursively to simulate the game after the move
+                simScore = self.minimax(board, self.opponentSymbol if currentPlayer == self.symbol else self.symbol)
+                # Undo the move
+                board[i] = ' '
+                # Update best move
+                simScore['position'] = i
+
+                #Maximizing
+                if currentPlayer == self.symbol:
+                    if simScore ["score"] > best["score"]:
+                        best = simScore
+                #Minimizing
+                else:
+                    if simScore["score"] < best["score"]:
+                        best = simScore
+
+        return best
+
+    def checkWinner(self, board, symbol):
+        # Check all winning conditions on the current board for the given symbol
+        winConditions = [[0, 1, 2], [3, 4, 5], [6, 7, 8],  # Rows
+                          [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Columns
+                          [0, 4, 8], [2, 4, 6]]  # Diagonals
+        for condition in winConditions:
+            if (board[condition[0]] == symbol and
+                board[condition[1]] == symbol and
+                board[condition[2]] == symbol):
+                return True
+        return False
+
+    def isBoardFull(self, board):
+        # Check if the board is full
+        return ' ' not in board
 
 
 ######## MAIN CODE #########
-# Create two human players with symbols 'X' and 'O'
 humanPlayer1 = HumanPlayer("X")
 humanPlayer2 = HumanPlayer("O")
 
-randomComputerPlayer1 = RandomComputerPlayer("X")
-randomComputerPlayer2 = RandomComputerPlayer("O")
+aiPlayer1 = AI("X")
+aiPlayer2 = AI("O")
+
+RandomComputerPlayer1 = RandomComputerPlayer("O")
+RandomComputerPlayer2 = RandomComputerPlayer("O")
 
 game = TicTacToeGame()
 
-# Start the game round between two players
-game.gameRound(randomComputerPlayer1, randomComputerPlayer2)
+# Start the game round between two AI players
+game.gameRound(aiPlayer1, aiPlayer2)
