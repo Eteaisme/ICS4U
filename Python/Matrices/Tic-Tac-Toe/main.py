@@ -170,10 +170,10 @@ humanPlayer2 = HumanPlayer("O")
 aiPlayer1 = AI("X")
 aiPlayer2 = AI("O")
 
-RandomComputerPlayer1 = RandomComputerPlayer("O")
-RandomComputerPlayer2 = RandomComputerPlayer("O")
+randomComputerPlayer1 = RandomComputerPlayer("X")
+randomComputerPlayer2 = RandomComputerPlayer("O")
 
 game = TicTacToeGame()
 
 # Start the game round between two AI players
-game.gameRound(aiPlayer1, aiPlayer2)
+game.gameRound(aiPlayer1, RandomComputerPlayer2)
