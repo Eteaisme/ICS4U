@@ -99,7 +99,7 @@ class HumanPlayer():
 
 
 ################### AI PLAYER #############################
-class AI:
+class MiniMaxAI:
     def __init__(self,symbol):
         self.symbol = symbol
         self.opponentSymbol = "O" if symbol == "X" else "X"
@@ -167,8 +167,8 @@ class AI:
 humanPlayer1 = HumanPlayer("X")
 humanPlayer2 = HumanPlayer("O")
 
-aiPlayer1 = AI("X")
-aiPlayer2 = AI("O")
+minMaxAIPlayer1 = MiniMaxAI("X")
+minaMaxAIPlayer2 = MiniMaxAI("O")
 
 randomComputerPlayer1 = RandomComputerPlayer("X")
 randomComputerPlayer2 = RandomComputerPlayer("O")
@@ -176,4 +176,4 @@ randomComputerPlayer2 = RandomComputerPlayer("O")
 game = TicTacToeGame()
 
 # Start the game round between two AI players
-game.gameRound(aiPlayer1, RandomComputerPlayer2)
+game.gameRound(humanPlayer1, minaMaxAIPlayer2)
