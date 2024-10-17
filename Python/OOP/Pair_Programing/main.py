@@ -47,7 +47,7 @@ class Line:
     def isPerpendicular(self, other):
 
     # determine if a point, p, is on the line return boolean
-    def onLine(self, p):
+    def onLine(self, point):
 
     # return string representation of the slope and intercept of a line, e.g.
     # slope: 1.0 intercept: 0.0
