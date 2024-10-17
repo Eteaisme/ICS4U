@@ -40,13 +40,25 @@ class Point:
             return False
 class Line:
     # constructor (default slope = 1 and intercept = 0)
-    def __init__ (slope = 1, yint =0):
+    def __init__ (slope = 1, yint =0 ,vertical =False,xint =0):
+        if vertical == True:
+            self.xint = xint
+        else:
+            self.slope = slope
+            self.yint = yint
+        self.vertical = vertical
 
     # getters, return floats
     def getSlope (self):
-        
+        if self.vertical == True:
+            return False
+        else:
+            return self.slope
     def getYIntercept(self):
-
+        if self.vertical == True:
+            return False
+        else:
+            return self.yint
     # setters
     def setSlope (self, slope):
         
