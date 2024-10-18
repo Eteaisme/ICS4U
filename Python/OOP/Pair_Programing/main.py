@@ -1,3 +1,5 @@
+import numpy as np            
+import matplotlib.pyplot as plot 
 import math
 
 class Point:
@@ -29,6 +31,52 @@ class Point:
         distance = math.sqrt(((self.x)**2)+((self.y)**2))
         return distance
 
+    def plotPoint(self):
+    #gets scale of graph
+        tickScale = 0
+        isDivisable = True
+        graphScale = 20
+        if(self.x > self.y):
+            graphScale = self.x*2 
+        else: 
+            graphScale = self.y*2
+        xMin, xMax, yMin, yMax = -abs(graphScale), graphScale, -abs(graphScale), graphScale
+
+        #getsTickScale
+        while (isDivisable == True):
+            tickScale = graphScale
+            if((tickScale% 2) == 0):
+                tickScale = tickScale%2
+                print(tickScale)
+            else:
+                isDivisable = False
+                
+
+
+        
+        #Plot points
+        fig, ax = plot.subplots(figsize=(10, 10))
+        ax.scatter(self.x, self.y, c="b")
+
+        #Create axes
+        ax.spines['bottom'].set_position('zero')
+        ax.spines['left'].set_position('zero') 
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.set_xlabel('x', size=14, labelpad=-24, x=1.03)
+        ax.set_ylabel('y', size=14, labelpad=-21, y=1.02, rotation=0)
+        xTicks = np.arange(xMin, xMax+1, tickScale)
+        yTicks = np.arange(yMin, yMax+1, tickScale)
+        ax.set_xticks(xTicks[xTicks!= 0])
+        ax.set_yticks(yTicks[yTicks != 0])
+
+        plot.show()
+
+
+
+
+
+
     # return string representation of a point, i.e. coordinate pair (x,y)
     def __repr__(self):
         return "(" + str(self.x) + "," + str(self.y) + ")"
@@ -59,6 +107,7 @@ class Line:
             return False
         else:
             return self.yint
+            
     def getvertical (self):
         return self.vertical
     def getYIntercept(self):
@@ -146,22 +195,23 @@ class Line:
 
 ######## Test Code ####################3
 p1 = Point()
-p1.setX(3)
-p1.setY(4)
+p1.setX(8)
+p1.setY(5)
 print("Point 1: ", p1)
 print("Distance to origin: ", p1.distanceToOrigin())
 p2 = Point(-1,-10)
 print("p2 is at (", p2.getX(),",",p2.getY(),")")
 print("Distance p1 to p2: ", p1.distanceToPoint(p2))
 print("Does p1=p2? ", p1==p2)
+p1.plotPoint()
 
 l1=Line()
-l1.set_slope(-2)
-l1.set_yint(10)
+l1.setSlope(-2)
+l1.setYIntercept(10)
 print(l1)
 l2=Line(0.5,-3)
 print("Does l1 =l2?: ", l1==l2)
-print("Are l1 and l2 parallel? ", l1.is_parallel(l2))
-print("Are l1 and l2 perpendicular? ", l2.is_perpendicular(l1))
-print("Is p1 on l1? ", l1.on_line(p1))
-print("Is p2 on l2? ", l2.on_line(p2))
+print("Are l1 and l2 parallel? ", l1.isParrallel(l2))
+print("Are l1 and l2 perpendicular? ", l2.isPerpendicular(l1))
+print("Is p1 on l1? ", l1.onLine(p1))
+print("Is p2 on l2? ", l2.onLine(p2))
