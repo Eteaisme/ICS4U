@@ -1,10 +1,13 @@
+######## Imports ####################
 import numpy as np            
 import matplotlib.pyplot as plot 
 import math
 
+
+######## Main Class ####################
 class Point:
     # constructor, sets point to user coordinates, or default origin
-    def __init__(self, x=0, y = 0):
+    def __init__(self, x=0.0, y = 0.0):
         self.x = x
         self.y = y
     # getters:  get the x and y coordinates, returns a float
@@ -13,11 +16,12 @@ class Point:
     def getY(self):
         return self.y
 
-    # setters set the x and y coordinates
+    # setters: set the x and y coordinates
     def setX (self, x):
         self.x = x
     def setY(self, y):       
         self.y = y 
+
     # distance to another point, p, returns a float
     def distanceToPoint(self, point):
         distance = math.sqrt(((point.x - self.x)**2)+((point.y - self.y)**2))
@@ -28,8 +32,8 @@ class Point:
         distance = math.sqrt(((self.x)**2)+((self.y)**2))
         return distance
 
+    #Plots point on a graph
     def plotPoint(self):
-    #gets scale of graph
         graphScale = 20
         if(self.x > self.y):
             graphScale = self.x*2 
@@ -38,28 +42,28 @@ class Point:
             graphScale = self.y*2
             tickScale = graphScale/10
         xMin, xMax, yMin, yMax = -abs(graphScale), graphScale, -abs(graphScale), graphScale
-
-                
-
-
         
-        #Plot points
         fig, ax = plot.subplots(figsize=(10, 10))
         ax.scatter(self.x, self.y, c="b")
 
-        #Create axes
         ax.spines['bottom'].set_position('zero')
         ax.spines['left'].set_position('zero') 
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
+        
         ax.set_xlabel('x', size=14, labelpad=-24, x=1.03)
         ax.set_ylabel('y', size=14, labelpad=-21, y=1.02, rotation=0)
+
         xTicks = np.arange(xMin, xMax+1, tickScale)
         yTicks = np.arange(yMin, yMax+1, tickScale)
+
         ax.set_xticks(xTicks[xTicks!= 0])
         ax.set_yticks(yTicks[yTicks != 0])
 
         plot.show()
+
+
+
     # return string representation of a point, i.e. coordinate pair (x,y)
     def __repr__(self):
         return "(" + str(self.x) + "," + str(self.y) + ")"
@@ -67,18 +71,20 @@ class Point:
     def __eq__(self,other):
         return ((self.x == other.x) and (self.y == other.y))
 
+######## Line Class ####################
 class Line:
     # constructor (default slope = 1 and intercept = 0)
     def __init__ (self, slope = 1.0, yIntercept =0.0 ,):
         self.slope = slope
         self.yIntercept = yIntercept
-    # getters, return floats
+
+    # getters: return floats
     def getSlope (self):
         return self.slope
     def getYIntercept(self):
         return self.yIntercept
 
-    # setters
+    # setters: returns floats
     def setSlope (self, slope):
         self.slope=slope
     def setYIntercept (self, yIntercept):
@@ -87,22 +93,29 @@ class Line:
     # determine if two lines are parallel, return boolean
     def isParrallel (self, other):
         return self.slope == other.slope
+
     # determine if two lines are perpendicular to each other, return boolean
     def isPerpendicular(self, other):
         return self.slope * other.slope == -1
+
     # determine if a point, p, is on the line return boolean
     def onLine(self, point):
         return point.y == self.slope * point.x + self.yIntercept
 
-        
     # return string representation of the slope and intercept of a line, e.g.
     # slope: 1.0 intercept: 0.0
     def __repr__(self):
         return "Slope: " + str(self.slope) + " y-intercept: " + str(self.yIntercept)
+
     # return override of equality operator i.e. have the same slope, yint 
     def __eq__(self,other):
         return((self.slope == other.slope) and (self.yIntercept == other.yIntercept))
-######## Test Code ####################3
+
+
+
+
+
+######## Test Code ####################
 p1 = Point()
 p1.setX(3)
 p1.setY(4)
