@@ -29,11 +29,9 @@ class Point:
 class Line:
     # constructor (default slope = 1 and intercept = 0)
     def __init__ (slope = 1, yint =0 ,vertical =False,xint =0):
-        if vertical == True:
-            self.xint = xint
-        else:
-            self.slope = slope
-            self.yint = yint
+        self.xint = xint
+        self.slope = slope
+        self.yint = yint
         self.vertical = vertical
 
     # getters, return floats
@@ -47,19 +45,53 @@ class Line:
             return False
         else:
             return self.yint
+    def getvertical (self):
+        return self.vertical
+    def getYIntercept(self):
+        if self.vertical == True:
+            return self.xint
+        else:
+            return False
     # setters
     def setSlope (self, slope):
-        
+        self.vertical=False
+        self.xint= 0
+        self.slope=slope
     def setYIntercept (self, yint):
-
+        if self.vertical == False:
+            self.yint=yint
+        else:
+            print("na YIntercept")
     # determine if two lines are parallel, return boolean
     def isParrallel (self,other):
-
+        if self.vertical == True:
+            if other.vertical == True:
+                return True
+            else:
+                return False
+        elif self.slope == other.slope:
+            return True
+        else:
+            return False
     # determine if two lines are perpendicular to each other, return boolean
     def isPerpendicular(self, other):
+        if self.vertical == True:
+            if other.slope == 0 and other.vertical==False :
+                return True
+            else:
+                return False
+        elif other.vertical == True:
+            if self.slope == 0 and self.vertical==False :
+                return True
+            else:
+                return False
+        elif self.slope== -1/other.slope:
+            return False
 
     # determine if a point, p, is on the line return boolean
     def onLine(self, point):
+        if self.vertical == True:
+            
 
     # return string representation of the slope and intercept of a line, e.g.
     # slope: 1.0 intercept: 0.0
