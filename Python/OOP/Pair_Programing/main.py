@@ -86,7 +86,6 @@ class Point:
             return True
         else: 
             return False
-"""
 class Line:
     # constructor (default slope = 1 and intercept = 0)
 
@@ -101,11 +100,11 @@ class Line:
     def getSlope (self):
         
     def getYIntercept(self):
-
         if self.vertical == True:
             return False
         else:
             return self.yint
+            
     def getvertical (self):
         return self.vertical
     def getYIntercept(self):
@@ -161,7 +160,7 @@ class Line:
 
     # return override of equality operator i.e. have the same slope, yint 
     def __eq__(self,other):
-"""
+
 ######## Test Code ####################3
 p1 = Point()
 p1.setX(8)
@@ -173,3 +172,14 @@ print("p2 is at (", p2.getX(),",",p2.getY(),")")
 print("Distance p1 to p2: ", p1.distanceToPoint(p2))
 print("Does p1=p2? ", p1==p2)
 p1.plotPoint()
+
+l1=Line()
+l1.setSlope(-2)
+l1.setYIntercept(10)
+print(l1)
+l2=Line(0.5,-3)
+print("Does l1 =l2?: ", l1==l2)
+print("Are l1 and l2 parallel? ", l1.isParrallel(l2))
+print("Are l1 and l2 perpendicular? ", l2.isPerpendicular(l1))
+print("Is p1 on l1? ", l1.onLine(p1))
+print("Is p2 on l2? ", l2.onLine(p2))
