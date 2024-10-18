@@ -33,23 +33,15 @@ class Point:
 
     def plotPoint(self):
     #gets scale of graph
-        tickScale = 0
-        isDivisable = True
         graphScale = 20
         if(self.x > self.y):
             graphScale = self.x*2 
+            tickScale = graphScale%10
         else: 
             graphScale = self.y*2
+            tickScale = graphScale/10
         xMin, xMax, yMin, yMax = -abs(graphScale), graphScale, -abs(graphScale), graphScale
 
-        #getsTickScale
-        while (isDivisable == True):
-            tickScale = graphScale
-            if((tickScale% 2) == 0):
-                tickScale = tickScale%2
-                print(tickScale)
-            else:
-                isDivisable = False
                 
 
 
@@ -86,6 +78,7 @@ class Point:
             return True
         else: 
             return False
+"""
 class Line:
     # constructor (default slope = 1 and intercept = 0)
 
@@ -161,10 +154,11 @@ class Line:
     # return override of equality operator i.e. have the same slope, yint 
     def __eq__(self,other):
 
+"""
 ######## Test Code ####################3
 p1 = Point()
-p1.setX(8)
-p1.setY(5)
+p1.setX(5)
+p1.setY(16)
 print("Point 1: ", p1)
 print("Distance to origin: ", p1.distanceToOrigin())
 p2 = Point(-1,-10)
@@ -173,6 +167,7 @@ print("Distance p1 to p2: ", p1.distanceToPoint(p2))
 print("Does p1=p2? ", p1==p2)
 p1.plotPoint()
 
+"""
 l1=Line()
 l1.setSlope(-2)
 l1.setYIntercept(10)
@@ -183,3 +178,4 @@ print("Are l1 and l2 parallel? ", l1.isParrallel(l2))
 print("Are l1 and l2 perpendicular? ", l2.isPerpendicular(l1))
 print("Is p1 on l1? ", l1.onLine(p1))
 print("Is p2 on l2? ", l2.onLine(p2))
+"""
