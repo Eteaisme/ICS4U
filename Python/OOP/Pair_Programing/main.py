@@ -126,7 +126,7 @@ class Line:
 class Line:
     # constructor (default slope = 1 and intercept = 0)
 
-    def __init__ (self,slope = 1.0, yint =0.0,vertical =False,xint =0.0):
+    def __init__ (slope = 1.0, yint =0.0,vertical =False,xint =0.0):
         self.xint = xint
         self.slope = slope
         self.yint = yint
@@ -168,7 +168,7 @@ class Line:
     def setXIntercept (self, xint):
         self.xint=xint
     # determine if two lines are parallel, return boolean
-    def isParallel (self,other):
+    def isParrallel (self,other):
         if self.vertical == True:
             if other.vertical == True:
                 return True
@@ -208,9 +208,9 @@ class Line:
     # slope: 1.0 intercept: 0.0
     def __repr__(self):
         if self.vertical == False:
-            return"slope:"+str(self.slope)+"Y intercept:"+str(self.yint)
+            return("slope:",self.slope,"Y intercept:",self.yint)
         else:
-            return"the line is vertical and x intercept:"+str(self.xint)
+            return("the line is vertical and x intercept:",self.xint)
 
     # return override of equality operator i.e. have the same slope, yint 
     def __eq__(self,other):
@@ -245,15 +245,9 @@ p1.plotPoint()
 l1=Line()
 l1.setSlope(-2)
 l1.setYIntercept(10)
-l1.setSlope(-2)
-l1.setYIntercept(10)
 print(l1)
 l2=Line(0.5,-3)
 print("Does l1 =l2?: ", l1==l2)
-print("Are l1 and l2 parallel? ", l1.isParallel(l2))
-print("Are l1 and l2 perpendicular? ", l2.isPerpendicular(l1))
-print("Is p1 on l1? ", l1.onLine(p1))
-print("Is p2 on l2? ", l2.onLine(p2))
 print("Are l1 and l2 parallel? ", l1.isParrallel(l2))
 print("Are l1 and l2 perpendicular? ", l2.isPerpendicular(l1))
 print("Is p1 on l1? ", l1.onLine(p1))
