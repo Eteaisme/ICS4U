@@ -18,7 +18,52 @@ class Point:
     def setX (self, x):
         self.x = x
         
-    def setY(self, y):
+    def setY(self, y):        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.set_xlabel('x', size=14, labelpad=-24, x=1.03)
+        ax.set_ylabel('y', size=14, labelpad=-21, y=1.02, rotation=0)
+        xTicks = np.arange(xMin, xMax+1, tickScale)
+        yTicks = np.arange(yMin, yMax+1, tickScale)
+        ax.set_xticks(xTicks[xTicks!= 0])
+        ax.set_yticks(yTicks[yTicks != 0])
+
+        plot.show()
+
+
+
+
+
+
+    # return string representation of a point, i.e. coordinate pair (x,y)
+    def __repr__(self):
+        return "(" + str(self.x) + "," + str(self.y) + ")"
+    #return override of the equality boolean operator (true if x1==x2, y1==y2)
+    def __eq__(self,other):
+        if ((self.x == other.x) and (self.y == other.y)):
+            return True
+        else: 
+            return False
+class Line:
+    # constructor (default slope = 1 and intercept = 0)
+
+    def __init__ (slope = 1.0, yint =0.0,vertical =False,xint =0.0):
+        self.xint = xint
+        self.slope = slope
+        self.yint = yint
+        self.vertical = vertical
+
+
+    # getters, return floats
+    def getSlope (self):
+        if self.vertical == True:
+            return False
+        else:
+            return self.slope
+    def getYIntercept(self):
+        if self.vertical == True:
+            return False
+        else:
+            return self.yint
         self.y = y
 
     # distance to another point, p, returns a float
@@ -33,23 +78,15 @@ class Point:
 
     def plotPoint(self):
     #gets scale of graph
-        tickScale = 0
-        isDivisable = True
         graphScale = 20
         if(self.x > self.y):
             graphScale = self.x*2 
+            tickScale = graphScale%10
         else: 
             graphScale = self.y*2
+            tickScale = graphScale/10
         xMin, xMax, yMin, yMax = -abs(graphScale), graphScale, -abs(graphScale), graphScale
 
-        #getsTickScale
-        while (isDivisable == True):
-            tickScale = graphScale
-            if((tickScale% 2) == 0):
-                tickScale = tickScale%2
-                print(tickScale)
-            else:
-                isDivisable = False
                 
 
 
@@ -195,8 +232,8 @@ class Line:
 
 ######## Test Code ####################3
 p1 = Point()
-p1.setX(8)
-p1.setY(5)
+p1.setX(5)
+p1.setY(16)
 print("Point 1: ", p1)
 print("Distance to origin: ", p1.distanceToOrigin())
 p2 = Point(-1,-10)
