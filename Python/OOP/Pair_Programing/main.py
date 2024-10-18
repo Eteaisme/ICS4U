@@ -1,3 +1,5 @@
+import numpy as np            
+import matplotlib.pyplot as plot 
 import math
 
 class Point:
@@ -28,6 +30,21 @@ class Point:
     def distanceToOrigin(self):
         distance = math.sqrt(((self.x)**2)+((self.y)**2))
         return distance
+
+    def plotPoint(self):
+    #gets scale of graph
+        graphScale = 15
+        if(self.x > self.y):
+            graphScale = self.x*2 
+        else: 
+            graphScale = self.y*2
+        xMin, xMax, yMin, yMax = -abs(graphscale), graphScale, -abs(graphScale), graphScale
+
+
+
+
+
+
 
     # return string representation of a point, i.e. coordinate pair (x,y)
     def __repr__(self):
