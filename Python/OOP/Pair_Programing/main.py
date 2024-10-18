@@ -41,7 +41,7 @@ class Point:
 class Line:
     # constructor (default slope = 1 and intercept = 0)
 
-    def __init__ (slope = 1, yint =0 ,vertical =False,xint =0):
+    def __init__ (slope = 1.0, yint =0.0,vertical =False,xint =0.0):
         self.xint = xint
         self.slope = slope
         self.yint = yint
@@ -50,9 +50,11 @@ class Line:
 
     # getters, return floats
     def getSlope (self):
-        
+        if self.vertical == True:
+            return False
+        else:
+            return self.slope
     def getYIntercept(self):
-
         if self.vertical == True:
             return False
         else:
@@ -75,6 +77,10 @@ class Line:
             self.yint=yint
         else:
             print("na YIntercept")
+    def setvertical(self,vertical):
+        self.vertical=bool(vertical)
+    def setXIntercept (self, xint):
+        self.xint=xint
     # determine if two lines are parallel, return boolean
     def isParrallel (self,other):
         if self.vertical == True:
@@ -104,14 +110,39 @@ class Line:
     # determine if a point, p, is on the line return boolean
     def onLine(self, point):
         if self.vertical == True:
-            
-
+            if self.xint == point.x:
+                return True
+            else:
+                return False
+        elif point.y == (self.slope*point.x)+self.yint:
+            return True
+        else:
+            return False
     # return string representation of the slope and intercept of a line, e.g.
     # slope: 1.0 intercept: 0.0
     def __repr__(self):
+        if self.vertical == False:
+            return("slope:",self.slope,"Y intercept:",self.yint)
+        else:
+            return("the line is vertical and x intercept:",self.xint)
 
     # return override of equality operator i.e. have the same slope, yint 
     def __eq__(self,other):
+        if self.vertical == True:
+            if other.vertical == True:
+                if self.xint == other.xint:
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        elif self.slope == other.slope:
+            if self.yint == other.yint:
+                return True
+            else:
+                return False
+        else:
+            return False
 
 ######## Test Code ####################3
 p1 = Point()
