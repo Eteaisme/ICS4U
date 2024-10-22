@@ -136,3 +136,5 @@ print("Are l1 and l2 parallel? ", l1.isParrallel(l2))
 print("Are l1 and l2 perpendicular? ", l2.isPerpendicular(l1))
 print("Is p1 on l1? ", l1.onLine(p1))
 print("Is p2 on l2? ", l2.onLine(p2))
+
+p1.plotPoint()
