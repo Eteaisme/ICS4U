@@ -1,5 +1,6 @@
 
-# Last Updated: E. Tam 07/10/2024
+# Last Updated: E. Tam 30/10/2024
+import os 
 import random
 
 ################# MAIN GAME CLASS DEFINITION #############################
@@ -11,7 +12,7 @@ class TicTacToeGame:
 ################# MAIN GAME FUNCTIONS DEFINITION #########################
     def printBoard(self):
         # Print the current state of the board
-        print("\n")
+        os.system('clear')
         for i in range(0, 9, 3):
             print(f" {self.board[i]} | {self.board[i+1]} | {self.board[i+2]} ")
             if i < 6:
@@ -46,7 +47,6 @@ class TicTacToeGame:
     def gameRound(self, player1, player2):
         currentPlayer = player1  
         # Print starting information
-        print("\nWelcome to Tic-Tac-Toe!")
         self.printBoardOptions()  
 
         # Loop until either the board is full or one of the players has met a win condition
@@ -165,6 +165,11 @@ class MiniMaxAI:
 
 
 ######## MAIN CODE #########
+
+
+
+
+######## OBJECT DECLORATIONS #########
 humanPlayer1 = HumanPlayer("X")
 humanPlayer2 = HumanPlayer("O")
 
@@ -178,35 +183,148 @@ game = TicTacToeGame()
 
 
 
-print("""
-  _______ _          _______             _______         
- |__   __(_)        |__   __|           |__   __|        
-    | |   _  ___ ______| | __ _  ___ ______| | ___   ___ 
-    | |  | |/ __|______| |/ _` |/ __|______| |/ _ \ / _ \\
-    | |  | | (__       | | (_| | (__       | | (_) |  __/
-    |_|  |_|\___|      |_|\__,_|\___|      |_|\___/ \___|
-""")
-print("""
-  _     ___ _           _       ___ _                   
- / |   / __(_)_ _  __ _| |___  | _ \ |__ _ _  _ ___ _ _ 
- | |_  \__ \ | ' \/ _` | / -_) |  _/ / _` | || / -_) '_|
- |_(_) |___/_|_||_\__, |_\___| |_| |_\__,_|\_, \___|_|  
-                  |___/                    |__/         
-""")
-print()
-print("""
-  ___     __  __      _ _   _      _                   
- |_  )   |  \/  |_  _| | |_(_)_ __| |__ _ _  _ ___ _ _ 
-  / / _  | |\/| | || | |  _| | '_ \ / _` | || / -_) '_|
- /___(_) |_|  |_|\_,_|_|\__|_| .__/_\__,_|\_, \___|_|  
-                             |_|          |__/         
-""")
-print()
-print("""
-  ____    _  _      _ _        __   ___                        _.+._
- |__ /   | || |__ _| | |  ___ / _| | __|_ _ _ __  ___        (^\/^\/^)
-  |_ \_  | __ / _` | | | / _ \  _| | _/ _` | '  \/ -_)        \@*@*@/
- |___(_) |_||_\__,_|_|_| \___/_|   |_|\__,_|_|_|_\___|        {_____}
-""")
 
-gameChoice = input("")
+
+
+
+######## Wrapper #########
+exitGame = False
+gameChoice = ""
+while exitGame == False:
+    os.system('clear')
+    print("""
+     _______ _          _______             _______         
+    |__   __(_)        |__   __|           |__   __|        
+        | |   _  ___ ______| | __ _  ___ ______| | ___   ___ 
+        | |  | |/ __|______| |/ _` |/ __|______| |/ _ \ / _ \\
+        | |  | | (__       | | (_| | (__       | | (_) |  __/
+        |_|  |_|\___|      |_|\__,_|\___|      |_|\___/ \___|
+    """)
+    print("""
+     _     ___ _           _       ___ _                   
+    / |   / __(_)_ _  __ _| |___  | _ \ |__ _ _  _ ___ _ _ 
+    | |_  \__ \ | ' \/ _` | / -_) |  _/ / _` | || / -_) '_|
+    |_(_) |___/_|_||_\__, |_\___| |_| |_\__,_|\_, \___|_|  
+                    |___/                    |__/         
+    """)
+    print()
+    print("""
+    ___     __  __      _ _   _      _                   
+   |_  )   |  \/  |_  _| | |_(_)_ __| |__ _ _  _ ___ _ _ 
+    / / _  | |\/| | || | |  _| | '_ \ / _` | || / -_) '_|
+   /___(_) |_|  |_|\_,_|_|\__|_| .__/_\__,_|\_, \___|_|  
+                                |_|          |__/         
+    """)
+    print()
+    print("""
+     ____    _  _      _ _        __   ___                        _.+._
+    |__ /   | || |__ _| | |  ___ / _| | __|_ _ _ __  ___        (^\/^\/^)
+     |_ \_  | __ / _` | | | / _ \  _| | _/ _` | '  \/ -_)        \@*@*@/
+    |___(_) |_||_\__,_|_|_| \___/_|   |_|\__,_|_|_|_\___|        {_____}
+    """)
+    print()
+    print("""
+     _ _     ___ _           _      _   _          
+    | | |   / __(_)_ __ _  _| |__ _| |_(_)___ _ _  
+    |_  _|  \__ \ | '  \ || | / _` |  _| / _ \ ' \ 
+      |_(_) |___/_|_|_|_\_,_|_\__,_|\__|_\___/_||_|
+    """)
+
+
+
+
+    #Game mode input
+    gameChoice = input("")
+
+
+
+
+
+
+
+
+######## SINGLE PLAYER #########
+    if(gameChoice == "1"):
+        os.system('clear')
+        print()
+        print("""
+             _     ___              
+            / |   | __|__ _ ____  _ 
+            | |_  | _|/ _` (_-< || |
+            |_(_) |___\__,_/__/\_, |
+                                |__/ 
+        """)
+        print()
+        print("""
+             ___     _  _             _ 
+            |_  )   | || |__ _ _ _ __| |
+             / / _  | __ / _` | '_/ _` |
+            /___(_) |_||_\__,_|_| \__,_|
+        """)
+        print()
+        print("""
+             ____    ___     _ _   
+            |__ /   | __|_ _(_) |_ 
+             |_ \_  | _|\ \ / |  _|
+            |___(_) |___/_\_\_|\__|
+        """)
+        difficultyChoice = input("")
+        if(difficultyChoice == "1"):
+            game.gameRound(humanPlayer1, randomComputerPlayer2)
+        if(difficultyChoice == "2"):
+            os.system('clear')
+            game.gameRound(humanPlayer1, minaMaxAIPlayer2)
+        if(difficultyChoice == "3"):
+            os.system("clear")
+
+
+
+
+
+
+
+
+######## MULTIPLAYER #########
+    elif(gameChoice == "2"):
+        os.system("clear")
+        print("""
+         _     _____                ___ _                   
+        / |   |_   _|_ __ _____ ___| _ \ |__ _ _  _ ___ _ _ 
+        | |_    | | \ V  V / _ \___|  _/ / _` | || / -_) '_|
+        |_(_)   |_|  \_/\_/\___/   |_| |_\__,_|\_, \___|_|  
+                                            |__/         
+        """)
+        print()
+        print("""
+         ___     ___     _ _   
+        |_  )   | __|_ _(_) |_ 
+         / / _  | _|\ \ / |  _|
+        /___(_) |___/_\_\_|\__|
+        """)
+    difficultyChoice = input("")
+    if(difficultyChoice == "1"):
+        game.gameRound(humanPlayer1, humanPlayer2)
+    if(difficultyChoice == "2"):
+        os.system('clear')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    elif(gameChoice == "3"):
+        print("Hall of Fame")
+    elif(gameChoice == "4"):
+        print("Simulation")
+    else:
+        print()
