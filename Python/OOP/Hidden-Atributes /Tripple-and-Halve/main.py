@@ -38,6 +38,7 @@ n1.halve()
 n1.halve()
 n1.halve()
 n1.halve()
+
 n1.printNumber()
 
 
