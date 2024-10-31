@@ -65,6 +65,9 @@ class TicTacToeGame:
 
             # Switch turns
             currentPlayer = player2 if currentPlayer == player1 else player1
+            
+
+
 
 
 ################### CHILD CLASS DEFINITIONS #############################
@@ -188,9 +191,7 @@ game = TicTacToeGame()
 
 
 ######## Wrapper #########
-exitGame = False
-gameChoice = ""
-while exitGame == False:
+while True:
     os.system('clear')
     print("""
      _______ _          _______             _______         
@@ -230,9 +231,14 @@ while exitGame == False:
       |_(_) |___/_|_|_|_\_,_|_\__,_|\__|_\___/_||_|
     """)
 
-
-
-
+    print()
+    print("""
+     ___     ___     _ _   
+    | __|   | __|_ _(_) |_ 
+    |__ \_  | _|\ \ / |  _|
+    |___(_) |___/_\_\_|\__|
+                        
+    """)
     #Game mode input
     gameChoice = input("")
 
@@ -301,12 +307,11 @@ while exitGame == False:
          / / _  | _|\ \ / |  _|
         /___(_) |___/_\_\_|\__|
         """)
-    difficultyChoice = input("")
-    if(difficultyChoice == "1"):
-        game.gameRound(humanPlayer1, humanPlayer2)
-    if(difficultyChoice == "2"):
-        os.system('clear')
-
+        difficultyChoice = input("")
+        if(difficultyChoice == "1"):
+            game.gameRound(humanPlayer1, humanPlayer2)
+        if(difficultyChoice == "2"):
+            os.system('clear')
 
 
 
@@ -326,5 +331,9 @@ while exitGame == False:
         print("Hall of Fame")
     elif(gameChoice == "4"):
         print("Simulation")
+    elif(gameChoice == "5"):
+        os.system("clear")
+        break
+        
     else:
         print()
