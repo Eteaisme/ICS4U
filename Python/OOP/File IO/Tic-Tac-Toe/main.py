@@ -309,28 +309,29 @@ while True:
 
 ######## MULTIPLAYER #########
     elif(gameChoice == "2"):
-        os.system("clear")
-        print("""
-     _     _____                ___ _                   
-    / |   |_   _|_ __ _____ ___| _ \ |__ _ _  _ ___ _ _ 
-    | |_    | | \ V  V / _ \___|  _/ / _` | || / -_) '_|
-    |_(_)   |_|  \_/\_/\___/   |_| |_\__,_|\_, \___|_|  
-                                        |__/         
-        """)
-        print()
-        print("""
-     ___     ___     _ _   
-    |_  )   | __|_ _(_) |_ 
-     / / _  | _|\ \ / |  _|
-    /___(_) |___/_\_\_|\__|
-        """)
-        difficultyChoice = input("")
-        if(difficultyChoice == "1"):
+        while True: 
             os.system("clear")
-            game.gameRound(humanPlayer1, humanPlayer2)
-        if(difficultyChoice == "2"):
-            os.system('clear')
-            break
+            print("""
+        _     _____                ___ _                   
+        / |   |_   _|_ __ _____ ___| _ \ |__ _ _  _ ___ _ _ 
+        | |_    | | \ V  V / _ \___|  _/ / _` | || / -_) '_|
+        |_(_)   |_|  \_/\_/\___/   |_| |_\__,_|\_, \___|_|  
+                                            |__/         
+            """)
+            print()
+            print("""
+        ___     ___     _ _   
+        |_  )   | __|_ _(_) |_ 
+        / / _  | _|\ \ / |  _|
+        /___(_) |___/_\_\_|\__|
+            """)
+            difficultyChoice = input("")
+            if(difficultyChoice == "1"):
+                os.system("clear")
+                game.gameRound(humanPlayer1, humanPlayer2)
+            if(difficultyChoice == "2"):
+                os.system('clear')
+                break
 
 
 
