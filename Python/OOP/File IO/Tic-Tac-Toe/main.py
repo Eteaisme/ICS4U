@@ -69,12 +69,16 @@ class TicTacToeGame:
 
             if self.checkWinner(currentPlayer.symbol):
                 print(f"Player {currentPlayer.symbol} wins!")  
-                username = input("Enter your name into the Tic-Tac-Toe Hall of Fame: ")
-                self.writeToHallOfFame(username)
+                if(currentPlayer.playerType == "Human"): 
+                    username = input("Enter your name into the Tic-Tac-Toe Hall of Fame: ")
+                    self.writeToHallOfFame(username)
+                else: 
+                    input()
                 break 
 
             if self.isBoardFull():
                 print("It's a tie!")  
+                input()
                 break   
 
             # Switch turns
@@ -98,6 +102,7 @@ class RandomComputerPlayer():
 
 ################### HUMAN PLAYER #############################
 class HumanPlayer():
+    playerType = "Human"
     def __init__(self, symbol):
         # When a HumanPlayer object is created pass in a symbol value
         self.symbol = symbol
@@ -118,6 +123,7 @@ class HumanPlayer():
 
 ################### AI PLAYER #############################
 class MiniMaxAI:
+    playerType = "Computer"
     def __init__(self,symbol):
         self.symbol = symbol
         self.opponentSymbol = "O" if symbol == "X" else "X"
