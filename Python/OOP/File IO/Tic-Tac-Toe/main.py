@@ -343,7 +343,18 @@ while True:
 ######## HALL OF FAME#########
     elif(gameChoice == "3"):
         while True:
+            hallOfFame = open("/home/Elliot/School/ICS4U/Python/OOP/File IO/Tic-Tac-Toe/hallOfFame.txt", "r")
             os.system("clear")
+            print("""
+                     _  _      _ _        __   ___                        _.+._
+                    | || |__ _| | |  ___ / _| | __|_ _ _ __  ___        (^\/^\/^)
+                    | __ / _` | | | / _ \  _| | _/ _` | '  \/ -_)        \@*@*@/
+                    |_||_\__,_|_|_| \___/_|   |_|\__,_|_|_|_\___|        {_____}
+    """)
+            print()
+            print(hallOfFame.read())
+
+
             print("""
  ___     ___     _ _   
 |_  )   | __|_ _(_) |_ 
@@ -353,6 +364,7 @@ while True:
             difficultyChoice = input("")
             if(difficultyChoice == "2"):
                 os.system('clear')
+                hallOfFame.close()
                 break
 
 
