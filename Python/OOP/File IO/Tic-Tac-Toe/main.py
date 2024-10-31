@@ -2,7 +2,8 @@
 # Last Updated: E. Tam 31/10/2024
 import os 
 import random
-
+import datetime
+from pyfiglet import figlet_format
 ################# MAIN GAME CLASS DEFINITION #############################
 class TicTacToeGame:
     def __init__(self):
@@ -48,12 +49,12 @@ class TicTacToeGame:
         # Check if the board is full 
         return ' ' not in self.board
 
-    def writeToHallOfFame(message):
-        hallOfFame = open("/home/Elliot/School/ICS4U/Python/OOP/File IO/Tic-Tac-Toe/hallOfFame.txt", "w")
+    def writeToHallOfFame(self, message):
+        hallOfFame = open("/home/Elliot/School/ICS4U/Python/OOP/File IO/Tic-Tac-Toe/hallOfFame.txt", "a")
         print(message, file=hallOfFame)
         hallOfFame.close()
 
-        
+
     def gameRound(self, player1, player2):
         self.resetBoards(player2)
         currentPlayer = player1  
@@ -68,6 +69,8 @@ class TicTacToeGame:
 
             if self.checkWinner(currentPlayer.symbol):
                 print(f"Player {currentPlayer.symbol} wins!")  
+                username = input("Enter your name into the Tic-Tac-Toe Hall of Fame: ")
+                self.writeToHallOfFame(username)
                 break 
 
             if self.isBoardFull():
@@ -237,19 +240,10 @@ while True:
     """)
     print()
     print("""
-     _ _     ___ _           _      _   _          
-    | | |   / __(_)_ __ _  _| |__ _| |_(_)___ _ _  
-    |_  _|  \__ \ | '  \ || | / _` |  _| / _ \ ' \ 
-      |_(_) |___/_|_|_|_\_,_|_\__,_|\__|_\___/_||_|
-    """)
-
-    print()
-    print("""
-     ___     ___     _ _   
-    | __|   | __|_ _(_) |_ 
-    |__ \_  | _|\ \ / |  _|
-    |___(_) |___/_\_\_|\__|
-                        
+     _ _         ___     _ _   
+    | | |       | __|_ _(_) |_   
+    |_  _|      | _|\ \ / |  _|
+      |_(_)     |___/_\_\_|\__|
     """)
     #Game mode input
     gameChoice = input("")
@@ -349,8 +343,6 @@ while True:
     elif(gameChoice == "3"):
         print("Hall of Fame")
     elif(gameChoice == "4"):
-        print("Simulation")
-    elif(gameChoice == "5"):
         os.system("clear")
         break
         
