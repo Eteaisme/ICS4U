@@ -1,5 +1,5 @@
 
-# Last Updated: E. Tam 30/10/2024
+# Last Updated: E. Tam 31/10/2024
 import os 
 import random
 
@@ -10,6 +10,10 @@ class TicTacToeGame:
         self.board = [' ' for _ in range(9)]  
 
 ################# MAIN GAME FUNCTIONS DEFINITION #########################
+    def resetBoards(self, other):
+        # Reset both boards to empty 3x3 grids
+        self.board = [' ' for _ in range(9)]
+        other.board = [' ' for _ in range(9)]        
     def printBoard(self):
         # Print the current state of the board
         os.system('clear')
@@ -252,36 +256,42 @@ while True:
 ######## SINGLE PLAYER #########
     if(gameChoice == "1"):
         os.system('clear')
-        print()
-        print("""
-             _     ___              
-            / |   | __|__ _ ____  _ 
-            | |_  | _|/ _` (_-< || |
-            |_(_) |___\__,_/__/\_, |
-                                |__/ 
-        """)
-        print()
-        print("""
-             ___     _  _             _ 
-            |_  )   | || |__ _ _ _ __| |
-             / / _  | __ / _` | '_/ _` |
-            /___(_) |_||_\__,_|_| \__,_|
-        """)
-        print()
-        print("""
-             ____    ___     _ _   
-            |__ /   | __|_ _(_) |_ 
-             |_ \_  | _|\ \ / |  _|
-            |___(_) |___/_\_\_|\__|
-        """)
-        difficultyChoice = input("")
-        if(difficultyChoice == "1"):
-            game.gameRound(humanPlayer1, randomComputerPlayer2)
-        if(difficultyChoice == "2"):
-            os.system('clear')
-            game.gameRound(humanPlayer1, minaMaxAIPlayer2)
-        if(difficultyChoice == "3"):
+        while True:
             os.system("clear")
+            print()
+            print("""
+                 _     ___              
+                / |   | __|__ _ ____  _ 
+                | |_  | _|/ _` (_-< || |
+                |_(_) |___\__,_/__/\_, |
+                                    |__/ 
+            """)
+            print()
+            print("""
+                 ___     _  _             _ 
+                |_  )   | || |__ _ _ _ __| |
+                 / / _  | __ / _` | '_/ _` |
+                /___(_) |_||_\__,_|_| \__,_|
+            """)
+            print()
+            print("""
+                 ____    ___     _ _   
+                |__ /   | __|_ _(_) |_ 
+                 |_ \_  | _|\ \ / |  _|
+                |___(_) |___/_\_\_|\__|
+            """)
+            difficultyChoice = input("")
+            if(difficultyChoice == "1"):
+                os.system("clear")
+                game.gameRound(humanPlayer1, randomComputerPlayer2)
+                input()
+            if(difficultyChoice == "2"):
+                os.system('clear')
+                game.gameRound(humanPlayer1, minaMaxAIPlayer2)
+                input()
+            if(difficultyChoice == "3"):
+                os.system("clear")
+                break
 
 
 
