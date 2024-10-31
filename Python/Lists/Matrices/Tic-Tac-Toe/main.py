@@ -162,6 +162,8 @@ class MiniMaxAI:
         # Check if the board is full
         return ' ' not in board
 
+######## Hall of Fame #########
+def writeToHallOfFame:
 
 ######## MAIN CODE #########
 humanPlayer1 = HumanPlayer("X")

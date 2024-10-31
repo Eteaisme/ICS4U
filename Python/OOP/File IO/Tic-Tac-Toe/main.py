@@ -48,7 +48,14 @@ class TicTacToeGame:
         # Check if the board is full 
         return ' ' not in self.board
 
+    def writeToHallOfFame(message):
+        hallOfFame = open("/home/Elliot/School/ICS4U/Python/OOP/File IO/Tic-Tac-Toe/hallOfFame.txt", "w")
+        print(message, file=hallOfFame)
+        hallOfFame.close()
+
+        
     def gameRound(self, player1, player2):
+        self.resetBoards(player2)
         currentPlayer = player1  
         # Print starting information
         self.printBoardOptions()  
@@ -174,6 +181,7 @@ class MiniMaxAI:
 ######## MAIN CODE #########
 
 
+######## HALL OF FAME #########
 
 
 ######## OBJECT DECLORATIONS #########
@@ -284,7 +292,6 @@ while True:
             if(difficultyChoice == "1"):
                 os.system("clear")
                 game.gameRound(humanPlayer1, randomComputerPlayer2)
-                input()
             if(difficultyChoice == "2"):
                 os.system('clear')
                 game.gameRound(humanPlayer1, minaMaxAIPlayer2)
@@ -319,9 +326,11 @@ while True:
         """)
         difficultyChoice = input("")
         if(difficultyChoice == "1"):
+            os.system("clear")
             game.gameRound(humanPlayer1, humanPlayer2)
         if(difficultyChoice == "2"):
             os.system('clear')
+            break
 
 
 
