@@ -51,7 +51,7 @@ class TicTacToeGame:
 
     def writeToHallOfFame(self, message):
         hallOfFame = open("/home/Elliot/School/ICS4U/Python/OOP/File IO/Tic-Tac-Toe/hallOfFame.txt", "a")
-        print(message, file=hallOfFame)
+        print(figlet_format(message, font = "small"), file=hallOfFame)
         hallOfFame.close()
 
 
@@ -262,25 +262,25 @@ while True:
             os.system("clear")
             print()
             print("""
-                 _     ___              
-                / |   | __|__ _ ____  _ 
-                | |_  | _|/ _` (_-< || |
-                |_(_) |___\__,_/__/\_, |
-                                    |__/ 
+     _     ___              
+    / |   | __|__ _ ____  _ 
+    | |_  | _|/ _` (_-< || |
+    |_(_) |___\__,_/__/\_, |
+                        |__/ 
             """)
             print()
             print("""
-                 ___     _  _             _ 
-                |_  )   | || |__ _ _ _ __| |
-                 / / _  | __ / _` | '_/ _` |
-                /___(_) |_||_\__,_|_| \__,_|
+     ___     _  _             _ 
+    |_  )   | || |__ _ _ _ __| |
+     / / _  | __ / _` | '_/ _` |
+    /___(_) |_||_\__,_|_| \__,_|
             """)
             print()
             print("""
-                 ____    ___     _ _   
-                |__ /   | __|_ _(_) |_ 
-                 |_ \_  | _|\ \ / |  _|
-                |___(_) |___/_\_\_|\__|
+     ____    ___     _ _   
+    |__ /   | __|_ _(_) |_ 
+     |_ \_  | _|\ \ / |  _|
+    |___(_) |___/_\_\_|\__|
             """)
             difficultyChoice = input("")
             if(difficultyChoice == "1"):
@@ -305,18 +305,18 @@ while True:
     elif(gameChoice == "2"):
         os.system("clear")
         print("""
-         _     _____                ___ _                   
-        / |   |_   _|_ __ _____ ___| _ \ |__ _ _  _ ___ _ _ 
-        | |_    | | \ V  V / _ \___|  _/ / _` | || / -_) '_|
-        |_(_)   |_|  \_/\_/\___/   |_| |_\__,_|\_, \___|_|  
-                                            |__/         
+     _     _____                ___ _                   
+    / |   |_   _|_ __ _____ ___| _ \ |__ _ _  _ ___ _ _ 
+    | |_    | | \ V  V / _ \___|  _/ / _` | || / -_) '_|
+    |_(_)   |_|  \_/\_/\___/   |_| |_\__,_|\_, \___|_|  
+                                        |__/         
         """)
         print()
         print("""
-         ___     ___     _ _   
-        |_  )   | __|_ _(_) |_ 
-         / / _  | _|\ \ / |  _|
-        /___(_) |___/_\_\_|\__|
+     ___     ___     _ _   
+    |_  )   | __|_ _(_) |_ 
+     / / _  | _|\ \ / |  _|
+    /___(_) |___/_\_\_|\__|
         """)
         difficultyChoice = input("")
         if(difficultyChoice == "1"):
@@ -340,8 +340,23 @@ while True:
 
 
 
+######## HALL OF FAME#########
     elif(gameChoice == "3"):
-        print("Hall of Fame")
+        while True:
+            os.system("clear")
+            print("""
+ ___     ___     _ _   
+|_  )   | __|_ _(_) |_ 
+ / / _  | _|\ \ / |  _|
+/___(_) |___/_\_\_|\__|
+            """)
+            difficultyChoice = input("")
+            if(difficultyChoice == "2"):
+                os.system('clear')
+                break
+
+
+
     elif(gameChoice == "4"):
         os.system("clear")
         break
