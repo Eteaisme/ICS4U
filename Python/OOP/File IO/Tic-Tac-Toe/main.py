@@ -72,7 +72,7 @@ class TicTacToeGame:
                 if(currentPlayer.playerType == "Human"): 
                     username = input("Enter your name into the Tic-Tac-Toe Hall of Fame: ")
                     self.writeToHallOfFame(username)
-                else: 
+                else:
                     input()
                 break 
 
@@ -90,6 +90,7 @@ class TicTacToeGame:
 
 ################### CHILD CLASS DEFINITIONS #############################
 class RandomComputerPlayer():
+    playerType = "Computer"
     def __init__(self, symbol):
         self.symbol = symbol 
     def getInput(self, board):
@@ -295,7 +296,6 @@ while True:
             if(difficultyChoice == "2"):
                 os.system('clear')
                 game.gameRound(humanPlayer1, minaMaxAIPlayer2)
-                input()
             if(difficultyChoice == "3"):
                 os.system("clear")
                 break
