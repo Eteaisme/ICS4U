@@ -23,9 +23,7 @@ while running:
     frames.tick(60)
     window.fill((0, 0, 0))
     
-    # Draw the circle at the current mouse position
-    mouse_x, mouse_y = getMousePosition()
-    pygame.draw.circle(window, (255, 255, 255), (mouse_x, mouse_y), 40)
+    pygame.draw.circle(window, (255, 255, 255), (getMousePosition()), 40)
     
     pygame.display.update()
 
