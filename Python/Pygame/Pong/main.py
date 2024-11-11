@@ -26,11 +26,12 @@ rightPaddle = pygame.Rect(WIDTH - 50, HEIGHT // 2 - paddleHeight // 2, paddleWid
 ball = pygame.Rect(WIDTH // 2, HEIGHT // 2, ballRadius* 2, ballRadius* 2)
 
 # Sound effects 
+"""
 paddle1HitSound= pygame.mixer.Sound("Python\Pygame\Pong\Sounds\paddle1.wav")
 paddle2HitSound = pygame.mixer.Sound("Python\Pygame\Pong\Sounds\paddle2.wav")
 wallHitSound = pygame.mixer.Sound("Python\Pygame\Pong\Sounds\wallBounce.wav")
 winSound = pygame.mixer.Sound("Python\Pygame\Pong\Sounds\win.wav")
-
+"""
 # Game 
 running = True
 frames = pygame.time.Clock()
@@ -61,27 +62,27 @@ def ballMovement():
     # Handle wall collision
     if ball.top <= 0 or ball.bottom >= HEIGHT:
         ballVelocityY  *= -1
-        wallHitSound.play()
+  #      wallHitSound.play()
     
     # Left paddle collision
     if ball.colliderect(leftPaddle) and ballVelocityX < 0:
         ballVelocityX  *= -1
-        paddle1HitSound.play()
+  #      paddle1HitSound.play()
     
     # Right paddle collision
     if ball.colliderect(rightPaddle) and ballVelocityX > 0:
         ballVelocityX *= -1
-        paddle2HitSound.play()
+  #      paddle2HitSound.play()
     
     # Scoring 
     if ball.left <= 0:
         leftScore += 1
-        winSound.play()
+ #       winSound.play()
         resetBall()
     elif ball.right >= WIDTH:
         rightScore += 1
         resetBall()
-        winSound.play()
+ #       winSound.play()
 
 def resetBall():
     global ballVelocityX, ballVelocityY
