@@ -114,6 +114,6 @@ while running:
     updateScreen()
     
     # Cap the frame rate
-    frames.tick(120)
+    frames.tick(1000)
 #test
 pygame.quit()
